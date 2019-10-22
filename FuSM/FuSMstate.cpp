@@ -26,12 +26,27 @@ static char THIS_FILE[]=__FILE__;
 // DoTransition() - accept an input value and consider it within the
 // state's membership range, and if within, set both value and degree
 // of membership within this fuzzy state that said value represents,
-// returning true if a member or false if not
+// returning true if it's a member or false if not
 //////////////////////////////////////////////////////////////////////
 
 bool FuSMstate::DoTransition( int iInputValue )
 {
-
+	if (m_iLowRange <= iInputValue && iInputValue <= m_iHighRange)
+	{
+		m_iValueOfMembership = (iInputValue - m_iLowRange) + 1;
+		if (m_iHighRange)
+			m_iDegreeOfMembership = ((m_iValueOfMembership * 100) / m_iHighRange);
+		else
+			m_iDegreeOfMembership = 0;
+		// handle odd case of a crisp fuzzy range of a single value
+		if (m_iValueOfMembership == 1 && m_iLowRange == m_iHighRange)
+			m_iDegreeOfMembership = 100;
+		return true;
+	}
+	// the input is not in membership with this state
+	m_iValueOfMembership = 0;
+	m_iDegreeOfMembership = 0;
+	return false;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -40,7 +55,8 @@ bool FuSMstate::DoTransition( int iInputValue )
 
 void FuSMstate::GetMembershipRanges( int& iLow, int& iHigh )
 {
-
+	iLow = m_iLowRange;
+	iHigh = m_iHighRange;
 }
 
 //////////////////////////////////////////////////////////////////////

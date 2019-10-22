@@ -34,16 +34,22 @@ class FuSMstate;
 // I felt it would provide the best convenient container.
 //
 
-/*typedef HERE*/
+typedef map< int, FuSMstate*, less<int> > FuzzyState_Map;
+typedef FuzzyState_Map::value_type FSM_VT;
+
 
 // Create a Standard Template Library <list> for membership states 
 //
 
-/*typedef HERE*/
+typedef list< FuSMstate* > FuzzyState_List;
 
 class FuSMclass  
 {
-	/* "SOMETHING" GOES HERE*/
+	FuzzyState_Map m_map;// map containing all the fuzzy states of this FuSM
+	FuzzyState_List m_list;// list containing only membership state
+	FuzzyState_List::iterator m_itList; // iterator for use in accessing member states
+
+	int m_iCurrentInput;// value received that triggered transitions to new membership fuzzy states
 
 public:
 	FuSMclass();

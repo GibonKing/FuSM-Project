@@ -58,14 +58,69 @@ void CChildView::CreateFuSM()
 	// is left up to the reader.
 	
 	// create the STATE_ID_UNCARING 0 0
+	try
+	{
+		// FuSMstate( int iStateID, int iLowRange, int iHighRange )
+		pFuSMstate = new FuSMstate(STATE_ID_UNCARING, 0, 0);
+	}
+	catch (...)
+	{
+		throw;
+	}
+	// now add this state to the FuSM
+	m_pFuSMclass->AddState(pFuSMstate);
 
 	// create the STATE_ID_ANNOYED 1 24
+	try
+	{
+		// FuSMstate( int iStateID, int iLowRange, int iHighRange )
+		pFuSMstate = new FuSMstate(STATE_ID_ANNOYED, 1, 24);
+	}
+	catch (...)
+	{
+		throw;
+	}
+	// now add this state to the FuSM
+	m_pFuSMclass->AddState(pFuSMstate);
 
 	// create the STATE_ID_MAD 25 49
+	try
+	{
+		// FuSMstate( int iStateID, int iLowRange, int iHighRange )
+		pFuSMstate = new FuSMstate(STATE_ID_MAD, 25, 49);
+	}
+	catch (...)
+	{
+		throw;
+	}
+	// now add this state to the FuSM
+	m_pFuSMclass->AddState(pFuSMstate);
 
 	// create the STATE_ID_RAGE 50 99
+	try
+	{
+		// FuSMstate( int iStateID, int iLowRange, int iHighRange )
+		pFuSMstate = new FuSMstate(STATE_ID_RAGE, 50, 99);
+	}
+	catch (...)
+	{
+		throw;
+	}
+	// now add this state to the FuSM
+	m_pFuSMclass->AddState(pFuSMstate);
 	
 	// create the STATE_ID_BERSERK 100 100
+	try
+	{
+		// FuSMstate( int iStateID, int iLowRange, int iHighRange )
+		pFuSMstate = new FuSMstate(STATE_ID_BERSERK, 100, 100);
+	}
+	catch (...)
+	{
+		throw;
+	}
+	// now add this state to the FuSM
+	m_pFuSMclass->AddState(pFuSMstate);
 	
 }
 
