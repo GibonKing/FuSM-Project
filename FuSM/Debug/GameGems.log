@@ -1,4 +1,0 @@
-﻿cl : Command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
-  TestFuSMDlg.cpp
-ChildView.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
-  GameGems.vcxproj -> F:\ThirdYear\AI\Week4\FuSM-Project\FuSM\.\Debug\GameGems.exe
