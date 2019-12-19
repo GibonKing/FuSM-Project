@@ -31,6 +31,7 @@ char* pzFuSMStringIDs[NUMBER_OF_IDS_USED] = {
 "Raged          ",
 "Mad            ",
 "Annoyed        ",
+"Irritated      ",
 "Uncaring       ",
 "Player Seen    ",
 "Player Attacks ",
@@ -140,19 +141,19 @@ void TestFuSMDlg::OnSelchangeInputscombo()
 	switch (iID)
 	{
 	case INPUT_ID_PLAYER_SEEN:
-		iDislikeInput = 10;
+		iDislikeInput = rand() % 5 + 3;
 		break;
 	case INPUT_ID_PLAYER_ATTACKS:
-		iDislikeInput = 30;
+		iDislikeInput = rand() % 5 + 18;
 		break;
 	case INPUT_ID_PLAYER_GONE:
-		iDislikeInput = -10;
+		iDislikeInput = -(rand() % 5 + 3);
 		break;
 	case INPUT_ID_MONSTER_HURT:
-		iDislikeInput = +50;
+		iDislikeInput = rand() % 5 + 28;
 		break;
 	case INPUT_ID_MONSTER_HEALED:
-		iDislikeInput = -20;
+		iDislikeInput = -(rand() % 5 + 8);
 	default:
 		break;
 	}

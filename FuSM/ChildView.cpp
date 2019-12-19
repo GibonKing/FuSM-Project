@@ -57,7 +57,7 @@ void CChildView::CreateFuSM()
 	// fuzzy input from 0 to 100.  Expanding this to suit your needs
 	// is left up to the reader.
 	
-	// create the STATE_ID_UNCARING 0 0
+	// create the STATE_ID_UNCARING
 	try
 	{
 		// FuSMstate( int iStateID, int iLowRange, int iHighRange )
@@ -70,11 +70,24 @@ void CChildView::CreateFuSM()
 	// now add this state to the FuSM
 	m_pFuSMclass->AddState(pFuSMstate);
 
-	// create the STATE_ID_ANNOYED 1 24
+	// create the STATE_ID_ANNOYED
 	try
 	{
 		// FuSMstate( int iStateID, int iLowRange, int iHighRange )
-		pFuSMstate = new FuSMstate(STATE_ID_ANNOYED, 1, 24);
+		pFuSMstate = new FuSMstate(STATE_ID_ANNOYED, 1, 30);
+	}
+	catch (...)
+	{
+		throw;
+	}
+	// now add this state to the FuSM
+	m_pFuSMclass->AddState(pFuSMstate);
+
+	// create the STATE_ID_IRRITATED
+	try
+	{
+		// FuSMstate( int iStateID, int iLowRange, int iHighRange )
+		pFuSMstate = new FuSMstate(STATE_ID_IRRITATED, 20, 60);
 	}
 	catch (...)
 	{
@@ -87,7 +100,7 @@ void CChildView::CreateFuSM()
 	try
 	{
 		// FuSMstate( int iStateID, int iLowRange, int iHighRange )
-		pFuSMstate = new FuSMstate(STATE_ID_MAD, 25, 49);
+		pFuSMstate = new FuSMstate(STATE_ID_MAD, 50, 80);
 	}
 	catch (...)
 	{
@@ -100,7 +113,7 @@ void CChildView::CreateFuSM()
 	try
 	{
 		// FuSMstate( int iStateID, int iLowRange, int iHighRange )
-		pFuSMstate = new FuSMstate(STATE_ID_RAGE, 50, 99);
+		pFuSMstate = new FuSMstate(STATE_ID_RAGE, 70, 99);
 	}
 	catch (...)
 	{

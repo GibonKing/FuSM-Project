@@ -29,15 +29,42 @@ static char THIS_FILE[]=__FILE__;
 // returning true if it's a member or false if not
 //////////////////////////////////////////////////////////////////////
 
-bool FuSMstate::DoTransition( int iInputValue )
+// ---------------------- Straight Line ---------------------------- 
+//bool FuSMstate::DoTransition( int iInputValue )
+//{
+//	if (m_iLowRange <= iInputValue && iInputValue <= m_iHighRange)
+//	{
+//		m_iValueOfMembership = (iInputValue - m_iLowRange) + 1;
+//		if (m_iHighRange)
+//			m_iDegreeOfMembership = ((m_iValueOfMembership * 100) / m_iHighRange);
+//		else
+//			m_iDegreeOfMembership = 0;
+//		// handle odd case of a crisp fuzzy range of a single value
+//		if (m_iValueOfMembership == 1 && m_iLowRange == m_iHighRange)
+//			m_iDegreeOfMembership = 100;
+//		return true;
+//	}
+//	// the input is not in membership with this state
+//	m_iValueOfMembership = 0;
+//	m_iDegreeOfMembership = 0;
+//	return false;
+//}
+
+// ------------------------- Triangular -------------------------------
+bool FuSMstate::DoTransition(int iInputValue)
 {
 	if (m_iLowRange <= iInputValue && iInputValue <= m_iHighRange)
 	{
-		m_iValueOfMembership = (iInputValue - m_iLowRange) + 1;
-		if (m_iHighRange)
-			m_iDegreeOfMembership = ((m_iValueOfMembership * 100) / m_iHighRange);
-		else
-			m_iDegreeOfMembership = 0;
+		int midpoint = (m_iHighRange + m_iLowRange) / 2;
+		if (iInputValue == midpoint) {
+			m_iDegreeOfMembership = 100;
+		}
+		else if (iInputValue < midpoint) {
+			m_iDegreeOfMembership = ((float)(iInputValue - m_iLowRange) / (float)(midpoint - m_iLowRange)) * 100;
+		}
+		else {
+			m_iDegreeOfMembership = 100 - ((float)(iInputValue - midpoint) / (float)(m_iHighRange - midpoint)) * 100;
+		}
 		// handle odd case of a crisp fuzzy range of a single value
 		if (m_iValueOfMembership == 1 && m_iLowRange == m_iHighRange)
 			m_iDegreeOfMembership = 100;
